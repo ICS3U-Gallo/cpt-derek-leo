@@ -2,7 +2,7 @@ int paddleX, paddleY, paddleWidth, paddleHeight, paddleSpeed;
 
 int ballX, ballY, ballHeight, ballWidth;
 
-int xSpeed, ySpeed;
+double xSpeedNormal, ySpeedNormal;
 
 boolean up, down;
 
@@ -55,8 +55,8 @@ void setup() {
   ballY = height/2;
   ballWidth = 50;
   ballHeight = 50;
-  xSpeed = 5;
-  ySpeed = 4;
+  xSpeedNormal = 5;
+  ySpeedNormal = 4;
   backgroundGradients();
 }
 
@@ -123,8 +123,8 @@ void drawBall() {
 }
 
 void moveBall() {
-  ballX+= xSpeed;
-  ballY+= ySpeed;
+  ballX+= xSpeedNormal;
+  ballY+= ySpeedNormal;
 }
 
 void theWall() {
@@ -134,21 +134,21 @@ void theWall() {
 }
 
 void ballBounce() {
-  if (ballX>width-100 - ballWidth/2) {
-    xSpeed = -xSpeed;
+  if (ballX > width-100 - ballWidth/2) {
+    xSpeedNormal = -xSpeedNormal;
   }
-  if (ballY> height - ballHeight/2) {
-    ySpeed = -ySpeed;
-  } else if (ballY<ballHeight/2) {
-    ySpeed = -ySpeed;
+  if (ballY >= height - ballHeight/2) {
+    ySpeedNormal = -ySpeedNormal;
+  } else if (ballY < ballHeight/2) {
+    ySpeedNormal = -ySpeedNormal;
   }
 }
 
 void paddleBounce() {
   if (ballX - ballWidth/2 < paddleX + paddleWidth/2 && ballY - ballHeight/2 < paddleY + paddleHeight && ballY + ballHeight/2 > paddleY) { 
-    if (xSpeed < 0) {
-      xSpeed = -xSpeed*119/100;
-      ySpeed = ySpeed*110/100;
+    if (xSpeedNormal < 0) {
+      xSpeedNormal = -xSpeedNormal*103/100;
+      ySpeedNormal = ySpeedNormal*105/100;
       score+=1;
     }
   }
@@ -156,8 +156,8 @@ void paddleBounce() {
 
 void gameOver() {
   if (ballX - ballWidth/2< 0) {
-    xSpeed = 0;
-    ySpeed = 0;
+    xSpeedNormal = 0;
+    ySpeedNormal = 0;
     if (score < 10) {
       text("you suck >:]", 100, 300);
     } else if (score < 20 && score >= 10) {
@@ -167,12 +167,26 @@ void gameOver() {
     } else if (score < 100 && score >= 50) {
       text("waow", 100, 300);
     } else if (score >= 100) {
-      textSize(20);
-      text("waow u so cool", width/2-100, 300);
+      textSize(80);
+      text("waow u so cool", 0, 300);
       textSize(7);
       text("like Mr Gallo",width/2-100,325);
     }
-    
+    textSize(30);
+    text("Title Screen", width/5,500);
+    text("Try Again?", width/4+width/3,500);
+     mouseLoc = dist(mouseX, mouseY, 217, 492);
+  if (mousePressed){
+  if (mouseLoc <= 120) {
+    screen = 0;
+    setup();
+  }
+   mouseLoc = dist(mouseX, mouseY, 471, 492);
+  if (mouseLoc <= 120) {
+    screen = normalDiffScreen;
+    setup();
+  }
+  }
   }
 }
 void scores() {
@@ -197,6 +211,8 @@ void keyReleased() {
     down = false;
   }
 }
+
+
 void screen() {
   if (screen == 0) {
     background(0);
@@ -254,27 +270,27 @@ void screen() {
 }
    
 void mousePressed() {
-  mouseLoc = dist(mouseX, mouseY, 120, 228);
+  mouseLoc = dist(mouseX, mouseY, 120, 288);
   if (mouseLoc <= 90) {
     screen = normalDiffScreen;
   }
 
-  mouseLoc = dist(mouseX, mouseY, 120, 288);
+  mouseLoc = dist(mouseX, mouseY, 120, 348);
   if (mouseLoc <= 90) {
     screen = infernoDiffScreen;
   }
 
-  mouseLoc = dist(mouseX, mouseY, 120, 348);
+  mouseLoc = dist(mouseX, mouseY, 120, 408);
   if (mouseLoc <= 90) {
     screen = randomDiffScreen;
   }
 
-  mouseLoc = dist(mouseX, mouseY, 465, 228);
+  mouseLoc = dist(mouseX, mouseY, 465, 288);
   if (mouseLoc <= 90) {
     screen = pongScreen;
   }
 
-  mouseLoc = dist(mouseX, mouseY, 465, 348);
+  mouseLoc = dist(mouseX, mouseY, 465, 408);
   if (mouseLoc <= 90) {
     screen = coopScreen;
   }
