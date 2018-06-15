@@ -610,7 +610,7 @@ void screen() {
     fill(255);
 
     textSize(bigFont);
-    text("Project S", width/2-100, 150);
+    text("Totally Not Pong", width/2-200, 150);
 
     textSize(mediumFont);
     text("Singleplayer", width/2-250, 200);
