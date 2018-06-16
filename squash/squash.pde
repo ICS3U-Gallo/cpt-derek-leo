@@ -4,8 +4,6 @@ float ballX, ballY, ballX2, ballY2, ballHeight, ballWidth, ballHeight2, ballWidt
 
 double xSpeed, xSpeed2, ySpeed, ySpeed2; //the universal x and y speed of the ball
 
-double xSpeedN, ySpeedN, xSpeedI, ySpeedI;//the x and y speed of the ball when normal or infernal is pressed (ball speed increases differently
-
 boolean up, up2, down, down2;//allows user to control paddle when they press w or a, and up or down in multiplayer
 
 int score, score2, score3; //remembers the numbers of times the ball hit the paddle
