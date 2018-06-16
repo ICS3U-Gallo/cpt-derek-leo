@@ -1,6 +1,6 @@
 float paddleX, paddleY, paddleY2, paddleWidth, paddleHeight, paddleSpeed; //paddle values such as x and y location, width and height, and speed
 
-float ballX, ballY, ballX2, ballY2, ballHeight, ballWidth; //ball values like x and y location, width and height
+float ballX, ballY, ballX2, ballY2, ballHeight, ballWidth, ballHeight2, ballWidth2; //ball values like x and y location, width and height
 
 double xSpeed, xSpeed2, ySpeed, ySpeed2; //the universal x and y speed of the ball
 
@@ -121,8 +121,6 @@ void pongMode() {
   drawPaddle();
   movePaddle();
   restrictPaddle();
-  ballWidth = 35; //ball is smaller in pong modesco
-  ballHeight = 35;
   drawBall();
   moveBall();
   ballBounce();
@@ -139,8 +137,6 @@ void coopMode() {
   drawPaddle();
   movePaddle();
   restrictPaddle();
-  ballHeight = 35; //smaller in co-op mode
-  ballWidth = 35;
   drawBall();
   moveBall();
   ballBounce();
@@ -156,8 +152,6 @@ void randomPongMode() {
   drawPaddle();
   movePaddle();
   restrictPaddle();
-  ballHeight = 35; //smaller in random pong
-  ballWidth = 35;
   drawBall();
   moveBall();
   ballBounceRandom();
@@ -223,10 +217,14 @@ void restrictPaddle() {
 //draws the ball and colors it white also draws the second ball if the game is in co-op mode
 void drawBall() {
   fill(#ffffff);
+  if (screen != coopScreen && screen != pongScreen && screen != randomPongScreen){
   ellipse(ballX, ballY, ballWidth, ballHeight);
-  if (screen == coopScreen) {
-    ellipse(ballX2, ballY2, ballWidth, ballHeight);
   }
+  else if (screen == coopScreen){
+    ellipse(ballX2, ballY2, ballWidth2, ballHeight2);
+  }
+  else {
+    ellipse(ballX, ballY, ballWidth2, ballHeight2);
 }
 //moves the ball by constantly updating its x and y locations
 void moveBall() {
@@ -660,7 +658,7 @@ void screen() {
   }
 }
 
-//uses the distance of the mouse and the invisible square to see what the user has clicked to go to the appropriate screen
+//uses the distance of the mouse and the words to see what the user has clicked to go to the appropriate screen
 void mousePressed() {
   mouseLoc = dist(mouseX, mouseY, 165, 246);
   if (mouseLoc <= 50 && screen == 0) {
