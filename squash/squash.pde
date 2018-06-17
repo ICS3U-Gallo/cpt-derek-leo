@@ -146,7 +146,7 @@ void coopMode() {
 //all the functions random pong mode needs to call
 void randomPongMode() {
   background(bg[randomPongScreen]);
-  image(img2, width/2-137.5,height/2-137.5,275,275); //awesome face in the middle of the screen
+  image(img2, width/2-137.5, height/2-137.5, 275, 275); //awesome face in the middle of the screen
   drawPaddle();
   movePaddle();
   restrictPaddle();
@@ -215,14 +215,13 @@ void restrictPaddle() {
 //draws the ball and colors it white also draws the second ball if the game is in co-op mode
 void drawBall() {
   fill(#ffffff);
-  if (screen != coopScreen && screen != pongScreen && screen != randomPongScreen){
-  ellipse(ballX, ballY, ballWidth, ballHeight);
-  }
-  else if (screen == coopScreen){
+  if (screen != coopScreen && screen != pongScreen && screen != randomPongScreen) {
+    ellipse(ballX, ballY, ballWidth, ballHeight);
+  } else if (screen == coopScreen) {
     ellipse(ballX2, ballY2, ballWidth2, ballHeight2);
-  }
-  else {
+  } else {
     ellipse(ballX, ballY, ballWidth2, ballHeight2);
+  }
 }
 //moves the ball by constantly updating its x and y locations
 void moveBall() {
