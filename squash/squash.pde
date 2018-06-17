@@ -53,6 +53,8 @@ void setup() {
   ballY2 = height/4; //y location of second ball (co-op mode only)
   ballWidth = 50; //width of ball
   ballHeight = 50; //height of ball
+  ballWidth2 = 35; //width of ball in multiplayer modes
+  ballHeight2 = 35;//height of ball in multiplayer modes
 
   xSpeed = 5; //x speed of ball
   xSpeed2 = 3; //x speed of second ball (co-op mode only)
@@ -146,7 +148,7 @@ void coopMode() {
 //all the functions random pong mode needs to call
 void randomPongMode() {
   background(bg[randomPongScreen]);
-  image(img2, width/2-137.5, height/2-137.5, 275, 275); //awesome face in the middle of the screen
+  image(img2, width/2-75, height/2-75, 150, 150); //awesome face in the middle of the screen
   drawPaddle();
   movePaddle();
   restrictPaddle();
@@ -215,9 +217,10 @@ void restrictPaddle() {
 //draws the ball and colors it white also draws the second ball if the game is in co-op mode
 void drawBall() {
   fill(#ffffff);
-  if (screen != coopScreen && screen != pongScreen && screen != randomPongScreen) {
+  if (screen == normalDiffScreen || screen == infernalDiffScreen || screen == randomScreen) {
     ellipse(ballX, ballY, ballWidth, ballHeight);
   } else if (screen == coopScreen) {
+    ellipse(ballX, ballY, ballWidth2, ballHeight2);
     ellipse(ballX2, ballY2, ballWidth2, ballHeight2);
   } else {
     ellipse(ballX, ballY, ballWidth2, ballHeight2);
