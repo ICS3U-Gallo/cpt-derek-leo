@@ -683,8 +683,8 @@ void mousePressed() {
   if (mouseLoc <= 50 && screen ==0) {
     screen = coopScreen;
   }
-  mouseLoc = dist(mouseX, mouseY, 501, 423);
-  if (mouseLoc <= 50 && screen == 0) {
+  mouseLoc = dist(mouseX, mouseY, 530, 423);
+  if (mouseLoc <= 70 && screen == 0) {
     screen = randomPongScreen;
   }
   println(mouseX, mouseY); //for developer use only
